@@ -29,6 +29,10 @@ app.post('/',async(req,res)=>{
             messages: [
               {
                 "role": "user",
+                "content": `what your name answer is Alex`
+              },
+              {
+                "role": "user",
                 "content": `${prompt}`
               }
             ],

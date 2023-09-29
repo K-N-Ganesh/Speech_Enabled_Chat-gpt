@@ -104,6 +104,7 @@ const handleSubmit=async()=>{
     }
     text = text.trimStart();
     let utter=new SpeechSynthesisUtterance(text);
+    utter.volume = 0.8;
      speechSynthesis.speak(utter)
      typetext(messageDiv,text)
      console.log(text)
