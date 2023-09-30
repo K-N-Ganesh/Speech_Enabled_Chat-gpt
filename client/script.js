@@ -50,7 +50,7 @@ function chatStripe(isai,value,uniqueId){
   )
 }
 const handleSubmit=async()=>{
-  
+ 
   window.SpeechRecognition = window.webkitSpeechRecognition;
 
  const recognition = new SpeechRecognition();
@@ -64,20 +64,22 @@ const handleSubmit=async()=>{
 
      console.log(transcript);
  });
+ recognition.start();
  const keyword = "hello Alex";
  recognition.addEventListener('end', async e => {
   if(transcript!="" && transcript.includes(keyword)){
     const index = transcript.indexOf(keyword);
+
     const textAfterKeyword = transcript.slice(index + keyword.length);
-    
-    if(textAfterKeyword!=""){
-  chatcontainer.innerHTML+=chatStripe(false,textAfterKeyword);
+    chatcontainer.innerHTML+=chatStripe(false,textAfterKeyword);
  
-  const uniqueId=generateUniqueId();
-  chatcontainer.innerHTML+=chatStripe(true,"",uniqueId);
-  chatcontainer.scrollTop=chatcontainer.scrollHeight;
- const messageDiv=document.getElementById(uniqueId);
- loader(messageDiv);
+    const uniqueId=generateUniqueId();
+    chatcontainer.innerHTML+=chatStripe(true,"",uniqueId);
+    chatcontainer.scrollTop=chatcontainer.scrollHeight;
+   const messageDiv=document.getElementById(uniqueId);
+   loader(messageDiv);
+    if(textAfterKeyword!="" && textAfterKeyword!="a"){
+ 
   const response=await fetch('https://speech-enabled-chat-gpt.onrender.com',{
     method:'POST', 
     headers:{
@@ -104,8 +106,9 @@ const handleSubmit=async()=>{
     }
     text = text.trimStart();
     let utter=new SpeechSynthesisUtterance(text);
-    utter.volume = 0.8;
+    utter.volume = 1.0;
      speechSynthesis.speak(utter)
+     await new Promise((resolve) => setTimeout(resolve, 750));
      typetext(messageDiv,text)
      console.log(text)
   }
@@ -117,7 +120,13 @@ const handleSubmit=async()=>{
   }
 }
 else{
-  handleSubmit()
+  clearInterval(loadinterval);
+  let utter=new SpeechSynthesisUtterance("Hello,How can I help you");
+    utter.volume = 1.0;
+     speechSynthesis.speak(utter)
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  typetext(messageDiv,"Hello,How can I help you");
+  
 }
 }
 else{
@@ -126,7 +135,7 @@ else{
 
  })
  
-  recognition.start();
+  
  
   
 }
