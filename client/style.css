@@ -11,6 +11,7 @@
 body {
   background: #343541;
   overflow: auto;
+  height: auto;
 }
 
 #app {

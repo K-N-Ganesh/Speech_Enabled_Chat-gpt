@@ -116,10 +116,10 @@ const handleSubmit=async()=>{
       text=parsedata
     }
     text = text.trimStart();
-    let utter=new SpeechSynthesisUtterance(text);
-    utter.volume = 1.0;
-    speechSynthesis.speak(utter);
-     await new Promise((resolve) => setTimeout(resolve, 750));
+      let utter=new SpeechSynthesisUtterance(text);
+      utter.volume = 1.0;
+      speechSynthesis.speak(utter);
+     
      typetext(messageDiv,text)
      console.log(text)
   }
