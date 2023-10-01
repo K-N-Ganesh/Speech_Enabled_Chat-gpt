@@ -162,4 +162,10 @@ document.getElementById("myButton").addEventListener("click", function() {
   handleSubmit();
 });
 
+// Function to scroll to the bottom of the page
+function scrollToBottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
 
+// Automatically scroll to the bottom every 1000 milliseconds (1 second)
+setInterval(scrollToBottom, 1000);
