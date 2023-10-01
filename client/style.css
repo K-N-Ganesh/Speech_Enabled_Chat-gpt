@@ -2,6 +2,7 @@
 
 * {
   margin: 0;
+  margin-top: 10px;
   padding: 0;
   box-sizing: border-box;
   font-family: "Alegreya Sans", sans-serif;
@@ -55,7 +56,12 @@ body {
 }
 
 .ai {
-  background: #40414F;
+  
+  width: 100%;
+  padding: 15px;
+  
+
+  
 }
 
 .chat {
@@ -140,7 +146,28 @@ button {
   background: transparent;
 }
 
-.form1{
+.form1 {
+  text-align: center;
+  padding: 20px;
   font-size: 35px;
+  width: 90%;
+  padding-top: 20px;
+  color: #fff;
+  box-shadow: 4px 4px 40px rgba(222, 138, 48, 0.3);
+  transform: translateY(-2px);
+}
+
+.form1 button {
+  margin-top: 10px;
+  font-size:35px ;
   color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+
+  border-radius: 5px;
+}
+.form1 button:hover {
+  box-shadow: 4px 4px 40px rgba(152, 237, 201, 0.35);
+  transform: translateY(-2px);
 }

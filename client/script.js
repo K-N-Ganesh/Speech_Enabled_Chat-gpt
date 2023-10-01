@@ -1,5 +1,6 @@
 
 const form=document.querySelector('.mic_class');
+
 const chatcontainer=document.querySelector('#chat_container');
 let loadinterval;
 function loader(element){ 
@@ -67,12 +68,22 @@ const handleSubmit=async()=>{
  recognition.start();
  const keyword = "hello Alex";
  recognition.addEventListener('end', async e => {
+  window.focus()
   if(transcript!="" && transcript.includes(keyword)){
-    const index = transcript.indexOf(keyword);
-
-    const textAfterKeyword = transcript.slice(index + keyword.length);
+    let textAfterKeyword
+    let key="hello Alexa"
+    if(transcript.includes(key)){
+      const index = transcript.indexOf(key);
+      
+     textAfterKeyword = transcript.slice(index + key.length);
     chatcontainer.innerHTML+=chatStripe(false,textAfterKeyword);
  
+    }else{
+    const index = transcript.indexOf(keyword);
+
+     textAfterKeyword = transcript.slice(index + keyword.length);
+    chatcontainer.innerHTML+=chatStripe(false,textAfterKeyword);
+    }
     const uniqueId=generateUniqueId();
     chatcontainer.innerHTML+=chatStripe(true,"",uniqueId);
     chatcontainer.scrollTop=chatcontainer.scrollHeight;
@@ -146,5 +157,9 @@ document.body.addEventListener('keyup',(e)=>{
     speechSynthesis.cancel();
   }
 })
-handleSubmit();
+document.getElementById("myButton").addEventListener("click", function() {
+  
+  handleSubmit();
+});
+
 
