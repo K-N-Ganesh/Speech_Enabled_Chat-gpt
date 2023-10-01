@@ -158,7 +158,7 @@ document.body.addEventListener('keyup',(e)=>{
   }
 })
 document.getElementById("myButton").addEventListener("click", function() {
-  
+  document.getElementById("myButton").disabled=true
   handleSubmit();
 });
 
