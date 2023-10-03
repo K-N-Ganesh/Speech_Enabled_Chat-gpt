@@ -68,7 +68,7 @@ const handleSubmit=async()=>{
  recognition.start();
  const keyword = "hello Alex";
  recognition.addEventListener('end', async e => {
-  window.focus()
+  
   if(transcript!="" && transcript.includes(keyword)){
     let textAfterKeyword
     let key="hello Alexa"
@@ -116,9 +116,7 @@ const handleSubmit=async()=>{
       text=parsedata
     }
     text = text.trimStart();
-      let utter=new SpeechSynthesisUtterance(text);
-      utter.volume = 1.0;
-      speechSynthesis.speak(utter);
+    speakText(text)
      
      typetext(messageDiv,text)
      console.log(text)
@@ -132,10 +130,8 @@ const handleSubmit=async()=>{
 }
 else{
   clearInterval(loadinterval);
-  let utter=new SpeechSynthesisUtterance("Hello,How can I help you");
-    utter.volume = 1.0;
-     speechSynthesis.speak(utter)
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  text="Hello,How can I help you"
+     speakText(text)
   typetext(messageDiv,"Hello,How can I help you");
   
 }
@@ -169,3 +165,14 @@ function scrollToBottom() {
 
 // Automatically scroll to the bottom every 1000 milliseconds (1 second)
 setInterval(scrollToBottom, 1000);
+function speakText(text) {
+  // Split the text into smaller chunks (e.g., sentences or paragraphs)
+  const chunks = text.split('\n'); // Split by newline character, adjust as needed
+
+  // Iterate through the chunks and speak each one
+  for (const chunk of chunks) {
+      const utter = new SpeechSynthesisUtterance(chunk);
+      utter.volume = 1.0;
+      speechSynthesis.speak(utter);
+  }
+}
