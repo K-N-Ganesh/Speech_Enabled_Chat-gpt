@@ -130,8 +130,8 @@ const handleSubmit=async()=>{
 }
 else{
   clearInterval(loadinterval);
-  text="Hello,How can I help you"
-     speakText(text)
+  let text="Hello,How can I help you"
+  speakText(text)
   typetext(messageDiv,"Hello,How can I help you");
   
 }
